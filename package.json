@@ -1,9 +1,11 @@
 {
   "name": "dummy-express",
   "version": "0.0.1",
-  "description": "",
+  "description": "Dummy website using express to test deployment",
+  "private": true,
   "main": "app.js",
   "scripts": {
+    "dev": "NODE_ENV=local node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
