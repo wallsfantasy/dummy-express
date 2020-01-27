@@ -1,0 +1,8 @@
+### IDE
+.idea
+
+### GIT
+.git*
+
+### NPM
+node_modules
