@@ -7,7 +7,7 @@
   "scripts": {
     "local": "NODE_ENV=local node app.js",
     "testing": "NODE_ENV=testing node app.js",
-    "test": "jest"
+    "test": "jest --rootDir ./test"
   },
   "author": "",
   "license": "ISC",
