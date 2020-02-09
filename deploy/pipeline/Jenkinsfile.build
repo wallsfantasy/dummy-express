@@ -1,0 +1,30 @@
+#!groovy
+
+node('') {
+    def git = checkout scm
+
+    stage('Jenkins Info') {
+        sh 'env'
+        sh 'pwd'
+        sh 'ls -alh .'
+    }
+
+    stage('Build') {
+        def tag = [git.GIT_BRANCH, git.GIT_COMMIT[0..5]].join('-')
+        def imageName = "asia.gcr.io/kns-prelim/dummy-express:${tag}"
+        def registry = 'https://asia.gcr.io'
+        def credentialId = 'kns-ci-docker-registry'
+
+        def image = docker.build(imageName)
+
+        stage('Test') {
+            sh "docker run --rm ${imageName} npm run test"
+        }
+
+        stage('Push') {
+            docker.withRegistry(registry, credentialId) {
+                image.push()
+            }
+        }
+    }
+}
